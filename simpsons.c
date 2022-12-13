@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define MAX_RECURSION_DEPTH 4
+#define MAX_RECURSION_DEPTH 16
 
 // argumenty i odpowiadające im wartości, które były już obliczane przez funkcję podcałkową
 // są przechowywane w liście
@@ -12,7 +12,6 @@ struct node {
     struct node *next;
 };
 
-// dodanie pary wartości do listy
 void push(struct node *head, int arg, int val) {
     struct node *new_node;
     new_node = (struct node*) malloc(sizeof(struct node));
@@ -96,21 +95,6 @@ float rec(float a, float b, float s, float delta, int depth, struct node* head) 
 }
 
 int main(void) {
-    int visited_len = 1;
-    
-    // maksymalnie 2^MAX_RECURSION_DEPTH wywołań funkcji simpson()
-    for (int i = 0; i < MAX_RECURSION_DEPTH; i++) {
-        visited_len *= 2;
-    }
-    
-    // maksymalnie 3 nowe elementy w tablicy na każde wywołanie funkcji simpson()
-    visited_len *= 3;
-    
-    float visited[visited_len];
-    
-    for (int i = 0; i < visited_len; i++)
-        visited[i] = NAN;
-        
     int a, b;
     float delta;
     
